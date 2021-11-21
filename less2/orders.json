@@ -1,0 +1,32 @@
+{
+    "orders": [
+        {
+            "item": "Банан",
+            "quantity": 68,
+            "price": 986,
+            "buyer": "Vitalya",
+            "date": "21.11.2021"
+        },
+        {
+            "item": "Яблоко",
+            "quantity": 52,
+            "price": 700,
+            "buyer": "Pushkin",
+            "date": "21.11.2021"
+        },
+        {
+            "item": "Апельсин",
+            "quantity": 3,
+            "price": 1200,
+            "buyer": "Petr",
+            "date": "21.11.2021"
+        },
+        {
+            "item": "Груша",
+            "quantity": 9,
+            "price": 500,
+            "buyer": "Alex",
+            "date": "21.11.2021"
+        }
+    ]
+}
