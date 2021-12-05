@@ -30,6 +30,7 @@ def create_presence(account_name = "Guest"):
 
 @log
 def process_ans(message):
+
     CLIENT_LOGGER.debug(f'Разбор сообщения от сервера: {message}.')
     if RESPONSE in message:
         if message[RESPONSE] == 200:
