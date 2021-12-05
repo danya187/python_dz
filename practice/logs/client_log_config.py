@@ -20,7 +20,7 @@ LOG_FILE.setFormatter(CLIENT_FORMATTER)
 LOGGER = logging.getLogger('client')
 LOGGER.addHandler(STREAM_HANDLER)
 LOGGER.addHandler(LOG_FILE)
-LOGGER.setLevel(logging.DEBUG)
+LOGGER.setLevel(LOGGING_LVL)
 
 
 if __name__ == '__main__':

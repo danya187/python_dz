@@ -9,12 +9,14 @@ from errors import ReqFielMissingError
 from common.const import ACTION, ACCOUNT_NAME,RESPONSE,MAX_CONNECTIONS,\
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT,DEFAULT_IP,RESPONDEFAULT_IP_ADDRESSE
 from common.utils import get_message, send_message
+from decos import log
 
 
 CLIENT_LOGGER = logging.getLogger('Client')
 
 
-def create_presence(account_name = "Guest"):
+@log
+def create_presence(account_name="Guest"):
     out = {
         ACTION: PRESENCE,
         TIME: time.time(),
@@ -26,7 +28,9 @@ def create_presence(account_name = "Guest"):
     return out
 
 
+@log
 def process_ans(message):
+
     CLIENT_LOGGER.debug(f'Разбор сообщения от сервера: {message}.')
     if RESPONSE in message:
         if message[RESPONSE] == 200:
@@ -35,6 +39,7 @@ def process_ans(message):
     raise ReqFielMissingError(RESPONSE)
 
 
+@log
 def create_arg_parses():
 
     parses = argparse.ArgumentParses()
@@ -75,7 +80,6 @@ def main():
     except ReqFielMissingError as missing_error:
         CLIENT_LOGGER.error(f'В ответе сервера отсутствуют необходимое поле'
                             f'{missing_error.missing_field}')
-
 
 
 if __name__ == '__mian__':

@@ -19,7 +19,7 @@ LOG_FILE = logging.handlers.TimedRotatingFileHandler(PATH, encoding='utf-8', int
 LOGGER = logging.getLogger('server')
 LOGGER.addHandler(STREAM_HANDLER)
 LOGGER.addHandler(LOG_FILE)
-
+LOGGER.setLevel(LOGGING_LVL)
 
 if __name__ == '__main__':
     LOGGER.critical('Критичсекая ошибка')
