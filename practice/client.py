@@ -9,11 +9,13 @@ from errors import ReqFielMissingError
 from common.const import ACTION, ACCOUNT_NAME,RESPONSE,MAX_CONNECTIONS,\
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT,DEFAULT_IP,RESPONDEFAULT_IP_ADDRESSE
 from common.utils import get_message, send_message
+from decos import log
 
 
 CLIENT_LOGGER = logging.getLogger('Client')
 
 
+@log
 def create_presence(account_name = "Guest"):
     out = {
         ACTION: PRESENCE,
@@ -26,6 +28,7 @@ def create_presence(account_name = "Guest"):
     return out
 
 
+@log
 def process_ans(message):
     CLIENT_LOGGER.debug(f'Разбор сообщения от сервера: {message}.')
     if RESPONSE in message:
@@ -35,6 +38,7 @@ def process_ans(message):
     raise ReqFielMissingError(RESPONSE)
 
 
+@log
 def create_arg_parses():
 
     parses = argparse.ArgumentParses()

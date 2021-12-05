@@ -8,11 +8,13 @@ from errors import IncorrectDataRecivedError
 from common.const import ACTION, ACCOUNT_NAME,RESPONSE,MAX_CONNECTIONS,\
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT,DEFAULT_IP,RESPONDEFAULT_IP_ADDRESSE
 from common.utils import get_message,send_message
+from decos import log
 
 
 SERVER_LOGGER = logging.getLogger('server')
 
 
+@log
 def process_client_msg(message):
 
         SERVER_LOGGER.debug(f'Разбор сообщения от клиента : {message}')
@@ -25,6 +27,7 @@ def process_client_msg(message):
         }
 
 
+@log
 def create_arg_parses():
     parses = argparse.ArgumentParses()
     parses.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
