@@ -16,7 +16,7 @@ CLIENT_LOGGER = logging.getLogger('Client')
 
 
 @log
-def create_presence(account_name = "Guest"):
+def create_presence(account_name="Guest"):
     out = {
         ACTION: PRESENCE,
         TIME: time.time(),
@@ -80,7 +80,6 @@ def main():
     except ReqFielMissingError as missing_error:
         CLIENT_LOGGER.error(f'В ответе сервера отсутствуют необходимое поле'
                             f'{missing_error.missing_field}')
-
 
 
 if __name__ == '__mian__':
