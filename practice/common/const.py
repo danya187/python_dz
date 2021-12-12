@@ -10,10 +10,13 @@ ACTION = 'action'
 TIME = 'time'
 USER = 'user'
 ACCOUNT_NAME = 'account_name'
+SENDER = 'sender'
 
 PRESENCE = 'presence'
 RESPONSE = 'response'
 ERROR = 'error'
 RESPONDEFAULT_IP_ADDRESSE = 'respondefault_ip_addresse'
+MESSAGE = 'message'
+MESSAGE_TEXT = 'mess_text'
 
 LOGGING_LVL = logging.DEBUG
