@@ -5,6 +5,15 @@ class IncorrectDataRecivedError(Exception):
         return 'Принято неккоректное сообщение  от удаленного компьютера.'
 
 
+class ServerError(Exception):
+    """Исключение - ошибка сервера"""
+    def __init__(self, text):
+        self.text = text
+
+    def __str__(self):
+        return self.text
+
+
 class NonDictInputError(Exception):
 
     def __str__(self):

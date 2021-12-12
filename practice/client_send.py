@@ -92,7 +92,6 @@ def arg_parser():
             f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         sys.exit(1)
 
-
     if client_mode not in ('listen', 'send'):
         LOGGER.critical(f'Указан недопустимый режим работы {client_mode}, '
                         f'допустимые режимы: listen , send')
@@ -108,7 +107,6 @@ def main():
     LOGGER.info(
         f'Запущен клиент с парамертами: адрес сервера: {server_address}, '
         f'порт: {server_port}, режим работы: {client_mode}')
-
 
     try:
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -145,7 +143,6 @@ def main():
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
                     LOGGER.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
-
 
             if client_mode == 'listen':
                 try:
