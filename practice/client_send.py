@@ -1,14 +1,14 @@
-import argparse
-import socket
-import time
 import sys
 import json
+import socket
+import time
+import argparse
 import logging
 import logs.client_log_config
-from errors import ReqFieldMissingError, ServerError
-from common.const import ACTION, ACCOUNT_NAME,RESPONSE,MAX_CONNECTIONS,\
-    PRESENCE, TIME, USER, ERROR, DEFAULT_PORT,DEFAULT_IP,RESPONDEFAULT_IP_ADDRESSE, MESSAGE, MESSAGE_TEXT, SENDER
+from common.const import DEFAULT_PORT, DEFAULT_IP, \
+    ACTION, TIME, USER, ACCOUNT_NAME, SENDER, PRESENCE, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT
 from common.utils import get_message, send_message
+from errors import ReqFieldMissingError, ServerError
 from decos import log
 
 
@@ -48,7 +48,8 @@ def create_message(sock, account_name='Guest'):
 
 
 @log
-def create_presence(account_name="Guest"):
+def create_presence(account_name='Guest'):
+
     out = {
         ACTION: PRESENCE,
         TIME: time.time(),
@@ -78,17 +79,19 @@ def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('addr', default=DEFAULT_IP, nargs='?')
     parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
-    parser.add_argument('-m', '--mode', default='listen', nargs='?')
+    parser.add_argument('-m', '--mode', default='send', nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     server_address = namespace.addr
     server_port = namespace.port
     client_mode = namespace.mode
 
+    # проверим подходящий номер порта
     if not 1023 < server_port < 65536:
         LOGGER.critical(
             f'Попытка запуска клиента с неподходящим номером порта: {server_port}. '
             f'Допустимы адреса с 1024 до 65535. Клиент завершается.')
         sys.exit(1)
+
 
     if client_mode not in ('listen', 'send'):
         LOGGER.critical(f'Указан недопустимый режим работы {client_mode}, '
@@ -143,6 +146,7 @@ def main():
                     LOGGER.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
 
+
             if client_mode == 'listen':
                 try:
                     message_from_server(get_message(transport))
@@ -151,5 +155,5 @@ def main():
                     sys.exit(1)
 
 
-if __name__ == '__mian__':
+if __name__ == '__main__':
     main()
